@@ -12,7 +12,10 @@ import {
 } from "firebase/firestore";
 import { db } from "lib/firebase";
 import { useState } from "react";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import {
+  useCollectionData,
+  useDocumentData,
+} from "react-firebase-hooks/firestore";
 
 export function useAddPost() {
   const [isLoading, setLoading] = useState(false);
@@ -40,13 +43,6 @@ export function useAddPost() {
   return { addPost, isLoading };
 }
 
-export function usePosts() {
-  const q = query(collection(db, "posts"), orderBy("date", "desc"));
-  const [posts, isLoading, error] = useCollectionData(q);
-  if (error) throw error;
-  return { posts, isLoading };
-}
-
 export function useToggleLike({ id, isLiked, uid }) {
   const [isLoading, setLoading] = useState(false);
 
@@ -68,4 +64,18 @@ export function useDeletePost(id) {
   async function deletePost() {}
 
   return { deletePost, isLoading };
+}
+
+export function usePost(id) {
+  const q = doc(db, "posts", id);
+  const [post, isLoading] = useDocumentData(q);
+
+  return { post, isLoading };
+}
+
+export function usePosts() {
+  const q = query(collection(db, "posts"), orderBy("date", "desc"));
+  const [posts, isLoading, error] = useCollectionData(q);
+  if (error) throw error;
+  return { posts, isLoading };
 }
