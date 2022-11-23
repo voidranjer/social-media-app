@@ -1,5 +1,5 @@
 import { Box, Button, Heading, HStack, Textarea } from "@chakra-ui/react";
-import PostsLists from "components/post/PostsLists";
+import PostsLists from "components/post/PostsList";
 import { useAuth } from "hooks/auth";
 import { useAddPost, usePosts } from "hooks/posts";
 import { useForm } from "react-hook-form";
