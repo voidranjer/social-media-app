@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 import Layout from "components/layout";
+import Dashboard from "components/dashboard";
 
 export const ROOT = "/";
 export const LOGIN = "/login";
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: DASHBOARD,
-        element: "Dashboard",
+        element: <Dashboard />,
       },
       {
         path: USERS,
