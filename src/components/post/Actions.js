@@ -10,6 +10,7 @@ import {
 import { useToggleLike, useDeletePost } from "hooks/posts";
 import { Link } from "react-router-dom";
 import { PROTECTED } from "lib/routes";
+import { useComments } from "hooks/comments";
 
 export default function Actions({ post }) {
   const { id, likes } = post;
@@ -24,6 +25,7 @@ export default function Actions({ post }) {
 
   const { toggleLike, isLoading: likeLoading } = useToggleLike(config);
   const { deletePost, isLoading: deleteLoading } = useDeletePost(id);
+  const { comments, isLoading: commentsLoading } = useComments(id);
 
   return (
     <Flex p="2">
@@ -43,14 +45,14 @@ export default function Actions({ post }) {
         <IconButton
           as={Link}
           to={`${PROTECTED}/comments/${id}`}
-          // isLoading={likeLoading || userLoading}
+          isLoading={commentsLoading}
           size="md"
           colorScheme="teal"
           variant="ghost"
-          icon={<FaRegComment />}
+          icon={comments?.length === 0 ? <FaRegComment /> : <FaComment />}
           isRound
         />
-        5
+        {comments?.length}
       </Flex>
 
       <IconButton
