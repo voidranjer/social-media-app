@@ -13,7 +13,7 @@ import { PROTECTED } from "lib/routes";
 import { useComments } from "hooks/comments";
 
 export default function Actions({ post }) {
-  const { id, likes } = post;
+  const { id, likes, uid } = post;
   const { user, isLoading: userLoading } = useAuth();
 
   const isLiked = likes.includes(user?.id);
@@ -55,16 +55,18 @@ export default function Actions({ post }) {
         {comments?.length}
       </Flex>
 
-      <IconButton
-        ml="auto"
-        onClick={deletePost}
-        isLoading={deleteLoading}
-        size="md"
-        colorScheme="red"
-        variant="ghost"
-        icon={<FaTrash />}
-        isRound
-      />
+      {!userLoading && user.id === uid && (
+        <IconButton
+          ml="auto"
+          onClick={deletePost}
+          isLoading={deleteLoading}
+          size="md"
+          colorScheme="red"
+          variant="ghost"
+          icon={<FaTrash />}
+          isRound
+        />
+      )}
     </Flex>
   );
 }
