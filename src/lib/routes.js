@@ -4,6 +4,7 @@ import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 import Layout from "components/layout";
 import Dashboard from "components/dashboard";
+import Home from "components/Home";
 import Comments from "components/comments";
 import Profile from "components/profile";
 import Users from "components/users";
@@ -13,6 +14,7 @@ export const LOGIN = "/login";
 export const REGISTER = "/register";
 
 export const PROTECTED = "/protected";
+export const HOME = "/protected/";
 export const DASHBOARD = "/protected/dashboard";
 export const USERS = "/protected/users";
 export const PROFILE = "/protected/profile/:id";
@@ -26,6 +28,10 @@ export const router = createBrowserRouter([
     path: PROTECTED,
     element: <Layout />,
     children: [
+      {
+        path: HOME,
+        element: <Home />,
+      },
       {
         path: DASHBOARD,
         element: <Dashboard />,
