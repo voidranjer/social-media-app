@@ -4,7 +4,7 @@ import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 import Layout from "components/layout";
 import Dashboard from "components/dashboard";
-import Home from "components/Home";
+import Home from "components/home";
 import Comments from "components/comments";
 import Profile from "components/profile";
 import Users from "components/users";
