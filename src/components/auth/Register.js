@@ -10,9 +10,10 @@ import {
   Link,
   Text,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { DASHBOARD, LOGIN } from "lib/routes";
-import { Link as RouterLink } from "react-router-dom";
-import { useRegister } from "hooks/auth";
+import { Link as RouterLink, useNavigate} from "react-router-dom";
+import { useRegister, useAuth } from "hooks/auth";
 import { useForm } from "react-hook-form";
 import {
   emailValidate,
@@ -22,11 +23,19 @@ import {
 
 export default function Register() {
   const { register: signup, isLoading } = useRegister();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    if (user) {
+      navigate(DASHBOARD);
+    }
+  });
 
   async function handleRegister(data) {
     signup({
