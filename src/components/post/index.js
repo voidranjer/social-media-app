@@ -25,9 +25,18 @@ function VerticallyCenter({ post }) {
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{title}</ModalHeader>
+          <ModalHeader>
+            <Text wordBreak="break-word" fontSize="md" as="b">
+              {title}
+            </Text>
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{text}</ModalBody>
+          <ModalBody>
+            <Text wordBreak="break-word" fontSize="md" as="b">
+              Project Description
+            </Text>
+            <Text>{text}</Text>
+          </ModalBody>
           <ModalFooter>
             <Button onClick={onClose}>Close</Button>
           </ModalFooter>
@@ -46,16 +55,14 @@ export default function Post({ post }) {
         <Header post={post} />
         <Box p="2">
           <Text wordBreak="break-word" fontSize="md" as="b">
-            Project Title:
+            Project Title
           </Text>
-          <Text>
-          {title}
-          </Text>
+          <Text>{title}</Text>
           <Divider my="2" />
           <Text wordBreak="break-word" fontSize="md" as="b">
             Project Description:
           </Text>
-          {text}
+          <Text>{text}</Text>
         </Box>
         <Box p="2">
           <VerticallyCenter post={post}></VerticallyCenter>
