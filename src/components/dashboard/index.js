@@ -74,7 +74,9 @@ export default function Dashboard() {
   return (
     <>
       <NewPost />
-      <Heading size="lg">Other Project</Heading>
+      <HStack justify="center" mb="10">
+        <Heading size="lg">Other Projects</Heading>
+      </HStack>
       <PostsLists posts={posts} />
     </>
   );
