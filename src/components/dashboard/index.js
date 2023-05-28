@@ -75,7 +75,7 @@ export default function Dashboard() {
     <>
       <NewPost />
       <HStack justify="center" mb="10">
-        <Heading size="lg">Other Projects</Heading>
+        <Heading size="lg">Other Projectss</Heading>
       </HStack>
       <PostsLists posts={posts} />
     </>
