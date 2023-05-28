@@ -48,8 +48,10 @@ export default function Post({ post }) {
           <Text wordBreak="break-word" fontSize="md" as="b">
             Project Title:
           </Text>
+          <Text>
           {title}
-          <Divider />
+          </Text>
+          <Divider my="2" />
           <Text wordBreak="break-word" fontSize="md" as="b">
             Project Description:
           </Text>
