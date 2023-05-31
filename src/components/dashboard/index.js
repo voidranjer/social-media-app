@@ -48,10 +48,17 @@ function NewPost() {
           minRows={3}
           {...register("text", { required: true })}
         />
-        <Select mt="5" {...register("category", { required: true })}>
-          <option value="someOption">Some option</option>
-          <option value="otherOption">Other option</option>
+
+        <Select
+          mt="5"
+          placeholder="Select option"
+          {...register("category", { required: true })}
+        >
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
         </Select>
+
         <Button
           mt="5"
           colorScheme="teal"
