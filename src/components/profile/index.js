@@ -39,7 +39,7 @@ export default function Profile() {
             colorScheme="teal"
             onClick={onOpen}
           >
-            Change avatar
+            Change Avatar
           </Button>
         )}
 

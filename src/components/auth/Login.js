@@ -10,19 +10,29 @@ import {
   Link,
   Text,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { DASHBOARD, REGISTER } from "lib/routes";
-import { Link as RouterLink } from "react-router-dom";
-import { useLogin } from "hooks/auth";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useLogin, useAuth } from "hooks/auth";
 import { useForm } from "react-hook-form";
+
 import { emailValidate, passwordValidate } from "utils/form-validate";
 
 export default function Login() {
   const { login, isLoading } = useLogin();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    if (user) {
+      navigate(DASHBOARD);
+    }
+  });
 
   async function handleLogin(data) {
     login({

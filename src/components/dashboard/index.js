@@ -1,4 +1,12 @@
-import { Box, Button, Heading, HStack, Textarea } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  HStack,
+  Input,
+  Select,
+  Textarea,
+} from "@chakra-ui/react";
 import PostsLists from "components/post/PostsList";
 import { useAuth } from "hooks/auth";
 import { useAddPost, usePosts } from "hooks/posts";
@@ -13,7 +21,9 @@ function NewPost() {
   function handleAddPost(data) {
     addPost({
       uid: user.id,
+      title: data.title,
       text: data.text,
+      category: data.category,
     });
     reset();
   }
@@ -23,23 +33,41 @@ function NewPost() {
       <form onSubmit={handleSubmit(handleAddPost)}>
         <HStack justify="space-between">
           <Heading size="lg">New Post</Heading>
-          <Button
-            colorScheme="teal"
-            type="submit"
-            isLoading={authLoading || addingPost}
-            loadingText="Loading"
-          >
-            Post
-          </Button>
         </HStack>
+        <Input
+          resize="none"
+          mt="5"
+          placeholder="Project Title"
+          {...register("title", { required: true })}
+        />
         <Textarea
           as={TextareaAutosize}
           resize="none"
           mt="5"
-          placeholder="Create a new post..."
+          placeholder="Project Description"
           minRows={3}
           {...register("text", { required: true })}
         />
+
+        <Select
+          mt="5"
+          placeholder="Select option"
+          {...register("category", { required: true })}
+        >
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </Select>
+
+        <Button
+          mt="5"
+          colorScheme="teal"
+          type="submit"
+          isLoading={authLoading || addingPost}
+          loadingText="Loading"
+        >
+          Post
+        </Button>
       </form>
     </Box>
   );
@@ -53,6 +81,9 @@ export default function Dashboard() {
   return (
     <>
       <NewPost />
+      <HStack justify="center" mb="10">
+        <Heading size="lg">Other Projectss</Heading>
+      </HStack>
       <PostsLists posts={posts} />
     </>
   );
